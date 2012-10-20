@@ -205,8 +205,7 @@ bool All_travese(Node *first)
           newfatnum+=sonnum;
 
       }
-      fatnum=0;
-      fatnum=
+      
       
       
       

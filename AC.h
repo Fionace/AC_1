@@ -6,9 +6,11 @@
 #include<string.h>
 #include<fstream>
 #include"Base.h"
+
+//const int MAX=255;
 using namespace std;
 
-const int MAX 255;
+const int MAX=255;
 /*typedef struct
 {
    
@@ -25,15 +27,15 @@ typedef struct
 
 class AC
 {
-   public：
+   public:
      int Next[MAX];
-     int id=0;//指示接着的子状态的状态序
-     bool Nextif[MAX]={0};
-     int Nextne=0;//指示下一个部分子状态的初始位置
-     int Base[MAX]={10000};
-     int Check[MAX]={0};
-     int Fail[MAX]={0};
-     int Output[MAX][MAX]={0};//状态值.模式串索引
+    static const int id=0;//指示接着的子状态的状态序
+     bool  Nextif[MAX];
+     int Nextne;//指示下一个部分子状态的初始位置
+     int Base[MAX];
+     int Check[MAX];
+     int Fail[MAX];
+     int Output[MAX][MAX];//状态值.模式串索引
      string Patt[MAX];
      int patt_num;
      int patt_maxlen;
