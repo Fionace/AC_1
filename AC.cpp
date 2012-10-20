@@ -152,13 +152,65 @@ bool Travese(Node *first,int id)
        */       
    }      
         
-bool All_travese()
+bool All_travese(Node *first)
 {
-   int i;
+   int i,k;
+   int fatnum=1;
+   int allson=patt_num;
+   Node *fat=new Node[1];
+   fat=first;
+   int newfatnum=1;
    for(i=0;i<patt_maxlen;i++)
      {
+         //Node *thistime=new Node[];
+          fatnum=newfatnum;
+          newfatnum=0;
+         for(k=0;k<fatnum;k++)
+         {
+            //newfatnum=0;
+            Node *cur;
+            //Node *fat=New Node;
+            cur=fat+i;
+           cur->son=new Node[patt_num];//调用AttainSon之前需要给son分配空间
+            AttainSon(cur);
+         
+          char *son=New char[strlen[cur->son]];
+        strcpy(son,sur->son);
+        Trans_son(son);
+        sonnum=strlen(son);
+       // fat=cur;
+        Node *Son=new Node[sonnum];
+        for(int k=0;k<sonnum;k++)  //为子状态建立新结点，并为状态值和前缀赋值
+            { Son->state=id+1;
+                id++;//id指示当前最后的状态值数值
+             Son_PR=new char[strlen(cur->PR)+1];
+             strcpy(Son->PR,cur->PR);
+             strcat(Son->PR,son+k);
+            }
+         int init=Nextne;
+        while(!Test_next(son,init))
+              init++;
+         if(init==Nextne)
+          {
+             Nextne++;
+          }
+         for(k=0;k<sonnum;k++)  //构造表并且为子结点的Nextindex赋值
+          {
+             if(!CreateTable(fat,Son+k,init,son+k,son))
+                 { 
+                     cout<<"FAULT IN CreateTable! "<<endl;
+                      return false;
+                 }
+          }
+          newfatnum+=sonnum;
+
+      }
+      fatnum=0;
+      fatnum=
+      
+      
+      
         
-         Travese();
      }
 }
 
