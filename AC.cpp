@@ -110,7 +110,7 @@ bool AttainSon(Node *curr)
    
 }
 
-bool All_travese(Node *first,int id)
+bool Travese(Node *first,int id)
 {
    int i;
   Node *cur;
@@ -152,7 +152,14 @@ bool All_travese(Node *first,int id)
        */       
    }      
         
-           
-    
+bool All_travese()
+{
+   int i;
+   for(i=0;i<patt_maxlen;i++)
+     {
+        
+         Travese();
+     }
+}
 
 
