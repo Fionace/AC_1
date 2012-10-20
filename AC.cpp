@@ -145,10 +145,14 @@ bool All_travese(Node *first,int id)
                  }
           }
 
-       
+       /*for(k=0;k<sonnum;k++)
+            {
+               All_travese(Son+k,id);
+            }
+       */       
    }      
         
            
     
-} 
+
 
