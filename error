@@ -1,33 +1,11 @@
-a.cpp: In function ‘int main()’:
-a.cpp:8:26: error: no matching function for call to ‘AC::All_travese(Node*&)’
-a.cpp:8:26: note: candidate is:
-AC.h:43:8: note: bool AC::All_travese()
-AC.h:43:8: note:   candidate expects 0 arguments, 1 provided
-a.cpp:12:25: error: ‘Next’ was not declared in this scope
-a.cpp:16:25: error: ‘Base’ was not declared in this scope
-a.cpp:20:25: error: ‘Check’ was not declared in this scope
-a.cpp:24:25: error: ‘Fail’ was not declared in this scope
 AC.cpp: In constructor ‘AC::AC(std::ifstream&, Node*)’:
-AC.cpp:9:25: error: expected ‘;’ before ‘)’ token
-AC.cpp:11:23: error: invalid use of member (did you forget the ‘&’ ?)
-AC.cpp:12:31: error: argument of type ‘std::basic_string<char>::size_type (std::basic_string<char>::)()const {aka unsigned int (std::basic_string<char>::)()const}’ does not match ‘int’
-AC.cpp:16:3: error: ‘PR’ was not declared in this scope
-AC.cpp:17:19: warning: extended initializer lists only available with -std=c++0x or -std=gnu++0x [enabled by default]
-AC.cpp:19:21: warning: extended initializer lists only available with -std=c++0x or -std=gnu++0x [enabled by default]
-AC.cpp:20:18: warning: extended initializer lists only available with -std=c++0x or -std=gnu++0x [enabled by default]
-AC.cpp:21:17: warning: extended initializer lists only available with -std=c++0x or -std=gnu++0x [enabled by default]
-AC.cpp:22:24: warning: extended initializer lists only available with -std=c++0x or -std=gnu++0x [enabled by default]
-AC.cpp: In member function ‘bool AC::Trans_son(char*)’:
-AC.cpp:30:15: error: ‘New’ was not declared in this scope
-AC.cpp:30:19: error: expected ‘,’ or ‘;’ before ‘char’
-AC.cpp:41:24: error: invalid conversion from ‘int’ to ‘const char*’ [-fpermissive]
-/usr/include/string.h:399:15: error:   initializing argument 1 of ‘size_t strlen(const char*)’ [-fpermissive]
-AC.cpp: At global scope:
-AC.cpp:46:6: error: prototype for ‘bool AC::Test_next(char*, int)’ does not match any in class ‘AC’
-AC.h:44:8: error: candidate is: bool AC::Test_next(char*)
-AC.cpp: In member function ‘bool AC::CreateTable(Node*, Node*, int, char*, char*)’:
-AC.cpp:80:28: error: invalid use of member (did you forget the ‘&’ ?)
-AC.cpp: At global scope:
-AC.cpp:108:30: error: no ‘bool AC::AttainSon(Node*)’ member function declared in class ‘AC’
-AC.cpp:161:6: error: prototype for ‘bool AC::All_travese(Node*)’ does not match any in class ‘AC’
-AC.h:43:8: error: candidate is: bool AC::All_travese()
+AC.cpp:17:13: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+AC.cpp:18:19: warning: extended initializer lists only available with -std=c++0x or -std=gnu++0x [enabled by default]
+AC.cpp:20:21: warning: extended initializer lists only available with -std=c++0x or -std=gnu++0x [enabled by default]
+AC.cpp:21:18: warning: extended initializer lists only available with -std=c++0x or -std=gnu++0x [enabled by default]
+AC.cpp:22:17: warning: extended initializer lists only available with -std=c++0x or -std=gnu++0x [enabled by default]
+AC.cpp:23:24: warning: extended initializer lists only available with -std=c++0x or -std=gnu++0x [enabled by default]
+AC.cpp: In member function ‘bool AC::All_travese(Node*)’:
+AC.cpp:209:14: warning: name lookup of ‘k’ changed [enabled by default]
+AC.cpp:169:10: warning:   matches this ‘k’ under ISO standard rules [enabled by default]
+AC.cpp:195:17: warning:   matches this ‘k’ under old rules [enabled by default]

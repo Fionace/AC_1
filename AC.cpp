@@ -1,28 +1,38 @@
 #include"AC.h"
 
-AC::AC(ifstream in,Node *first)
+
+AC::AC(ifstream &in,Node *first)
 {
    int i=0;
   while(in>>Patt[i])
      i++;
    patt_num=i;
-  for(i=0;i<patt_num,i++)
+  for(i=0;i<patt_num;i++)
    {  
-      if(Patt[i].size>patt_maxlen)
-          patt_maxlen=Patt[i].size;
+      if(Patt[i].size()>patt_maxlen)
+          patt_maxlen=Patt[i].size();
    }
   first->state=0;
   first->Nextindex=0;
-  PR="";
+  first->PR="";
+    Nextif[MAX]={0};
+    Nextne=0;//指示下一个部分子状态的初始位置
+    Base[MAX]={10000};
+    Check[MAX]={0};
+    Fail[MAX]={0};
+    Output[MAX][MAX]={0};//状态
  
 }
 
-bool Trans_son(char *son)
+
+ int AC::id=0;
+bool AC::Trans_son(char *son)
 {
     int len=strlen(son);
      int i=0;
-    char *tem=New char[len];
-      *tem=*son;
+    char *tem=new char[len];
+      //*tem=*son;
+     strcpy(tem,son);
     for(i=1;i<len;i++)
       {
          for(int k=0;k<strlen(tem);k++)
@@ -32,17 +42,19 @@ bool Trans_son(char *son)
            {*(tem+strlen(tem))=*(son+i);}
         }
       }
-    Sort(tem,strlen(len));
+    Sort(tem,strlen(tem));
+   delete son;
     son=tem;
    return true;
 }
 
-bool Test_next(char *son ,int init)
+bool AC::Test_next(char *son ,int init)
 {
     int len=strlen(son);
     int tem[len];
     tem[0]=init;
-   for(int i=1;i<len;i++) 
+    int i;
+   for(i=1;i<len;i++) 
       {
           tem[i]=tem[0]+(int)(*(son+i)-*son);
             if(Nextif[tem[i]]==false)
@@ -57,7 +69,7 @@ bool Test_next(char *son ,int init)
    
 }
 
-bool CreateTable(Node *curr_old,Node *curr,int init,char *a,char *ini)
+bool AC::CreateTable(Node *curr_old,Node *curr,int init,char *a,char *ini)
 {
     int i=int(*a)-int(*ini)+init;
     curr->Nextindex=i;
@@ -71,7 +83,7 @@ bool CreateTable(Node *curr_old,Node *curr,int init,char *a,char *ini)
      strcat(tem,a);
      for(int k=0;k<patt_num;k++)
       {
-         if(Patt[k].c_str==tem)
+         if(Patt[k].c_str()==tem)
            {
               z=0;  
              while(Output[curr->state][z]!=0)
@@ -99,18 +111,18 @@ bool CreateTable(Node *curr_old,Node *curr,int init,char *a,char *ini)
    return true;    
 }
 
-bool AttainSon(Node *curr)
+bool AC::AttainSon(Node *curr)
 {
     int num=strlen(curr->PR);
     for(int i=0;i<patt_num;i++)
       {
-         if(Patt[i].size>num)
-            strcat(curr->son,Patt[i][num]);
+         if(Patt[i].size()>num)
+            strcat(curr->son,&Patt[i][num]);
       }
    
 }
 
-bool Travese(Node *first,int id)
+/*bool Travese(Node *first,int id)
 {
    int i;
   Node *cur;
@@ -145,14 +157,14 @@ bool Travese(Node *first,int id)
                  }
           }
 
-       /*for(k=0;k<sonnum;k++)
+       *for(k=0;k<sonnum;k++)
             {
                All_travese(Son+k,id);
             }
-       */       
+             
    }      
-        
-bool All_travese(Node *first)
+    */
+bool AC::All_travese(Node *first)
 {
    int i,k;
    int fatnum=1;
@@ -171,19 +183,19 @@ bool All_travese(Node *first)
             Node *cur;
             //Node *fat=New Node;
             cur=fat+i;
-           cur->son=new Node[patt_num];//调用AttainSon之前需要给son分配空间
+           cur->son=new char[patt_num];//调用AttainSon之前需要给son分配空间
             AttainSon(cur);
          
-          char *son=New char[strlen[cur->son]];
-        strcpy(son,sur->son);
+          char *son=new char[strlen(cur->son)];
+        strcpy(son,cur->son);
         Trans_son(son);
-        sonnum=strlen(son);
+        int sonnum=strlen(son);
        // fat=cur;
         Node *Son=new Node[sonnum];
         for(int k=0;k<sonnum;k++)  //为子状态建立新结点，并为状态值和前缀赋值
             { Son->state=id+1;
                 id++;//id指示当前最后的状态值数值
-             Son_PR=new char[strlen(cur->PR)+1];
+             Son->PR=new char[strlen(cur->PR)+1];
              strcpy(Son->PR,cur->PR);
              strcat(Son->PR,son+k);
             }
@@ -206,7 +218,7 @@ bool All_travese(Node *first)
 
       }
       
-      
+     return true;      
       
       
         

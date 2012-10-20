@@ -29,7 +29,7 @@ class AC
 {
    public:
      int Next[MAX];
-    static const int id=0;//指示接着的子状态的状态序
+    static  int id;//指示接着的子状态的状态序
      bool  Nextif[MAX];
      int Nextne;//指示下一个部分子状态的初始位置
      int Base[MAX];
@@ -39,9 +39,10 @@ class AC
      string Patt[MAX];
      int patt_num;
      int patt_maxlen;
-  AC(ifstream in,Node *first);
-  bool All_travese();
-  bool Test_next(char *son);
+  AC(ifstream &in,Node *first);
+  bool All_travese(Node *first);
+  bool AttainSon(Node *curr);
+  bool Test_next(char *son,int init);
   bool Trans_son(char *son);
   bool CreateTable(Node *curr_old,Node *curr,int init,char *a,char *ini);
      
