@@ -60,6 +60,7 @@ bool Test_next(char *son ,int init)
 bool CreateTable(Node *curr_old,Node *curr,int init,char *a,char *ini)
 {
     int i=int(*a)-int(*ini)+init;
+    curr->Nextindex=i;
     int z=0,y=0,x=0;
     Next[i]=curr->state;
     Base[curr_old->state]=Next[i]-curr_old->Nextindex-int(*a);
@@ -98,14 +99,56 @@ bool CreateTable(Node *curr_old,Node *curr,int init,char *a,char *ini)
    return true;    
 }
 
-/*bool CreateSon(char *son,int sta,Node *curr_son)
+bool AttainSon(Node *curr)
 {
-    curr_son 
+    int num=strlen(curr->PR);
+    for(int i=0;i<patt_num;i++)
+      {
+         if(Patt[i].size>num)
+            strcat(curr->son,Patt[i][num]);
+      }
    
-}*/
+}
 
-bool All_travese()
+bool All_travese(Node *first,int id)
 {
+   int i;
+  Node *cur;
+  Node *fat=New Node;
+     
+         cur=first;
+         cur->son=new Node[patt_num];//调用AttainSon之前需要给son分配空间
+         AttainSon(cur);
+         
+        char *son=New char[strlen[cur->son]];
+        strcpy(son,sur->son);
+        Trans_son(son);
+        sonnum=strlen(son);
+        fat=cur;
+        Node *Son=new Node[sonnum];
+        for(int k=0;k<sonnum;k++)  //为子状态建立新结点，并为状态值和前缀赋值
+            { Son->state=id+1;
+                id++;//id指示当前最后的状态值数值
+             Son_PR=new char[strlen(fat->PR)+1];
+             strcpy(Son->PR,fat->PR);
+             strcat(Son->PR,son+k);
+            }
+         int init=Nextne;
+        while(!Test_next(son,init))
+              init++;
+         for(k=0;k<sonnum;k++)  //构造表并且为子结点的Nextindex赋值
+          {
+             if(!CreateTable(fat,Son+k,init,son+k,son))
+                 { 
+                     cout<<"FAULT IN CreateTable! "<<endl;
+                      return false;
+                 }
+          }
+
+       
+   }      
+        
+           
     
 } 
 
