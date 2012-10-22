@@ -7,6 +7,7 @@ AC::AC(ifstream &in,Node *first)
   while(in>>Patt[i])
      i++;
    patt_num=i;
+   patt_maxlen=0;//一定要初始化为一个最小值
   for(i=0;i<patt_num;i++)
    {  
       if(Patt[i].size()>patt_maxlen)
@@ -117,8 +118,11 @@ bool AC::AttainSon(Node *curr)
     for(int i=0;i<patt_num;i++)
       {
          if(Patt[i].size()>num)
-            strcat(curr->son,&Patt[i][num]);
+            {strcat(curr->son,&Patt[i][num]);
+             cout<<curr->son<<endl;
+           }
       }
+   return true;
    
 }
 
@@ -180,7 +184,7 @@ bool AC::All_travese(Node *first)
          for(k=0;k<fatnum;k++)
          {
             //newfatnum=0;
-            Node *cur;
+             Node *cur=new Node;
             //Node *fat=New Node;
             cur=fat+i;
            cur->son=new char[patt_num];//调用AttainSon之前需要给son分配空间
@@ -190,7 +194,7 @@ bool AC::All_travese(Node *first)
         strcpy(son,cur->son);
         Trans_son(son);
         int sonnum=strlen(son);
-       // fat=cur;
+        fat=cur;
         Node *Son=new Node[sonnum];
         for(int k=0;k<sonnum;k++)  //为子状态建立新结点，并为状态值和前缀赋值
             { Son->state=id+1;
@@ -224,5 +228,4 @@ bool AC::All_travese(Node *first)
         
      }
 }
-
 
