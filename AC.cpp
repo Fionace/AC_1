@@ -16,36 +16,54 @@ AC::AC(ifstream &in,Node *first)
 	first->state=0;
 	first->Nextindex=0;
 	first->PR="";
-	Nextif[MAX]={0};
-	Nextne=0;//指示下一个部分子状态的初始位置
-	Base[MAX]={10000};
-	Check[MAX]={0};
-	Fail[MAX]={0};
-	Output[MAX][MAX]={0};//状态
+       memset(Nextif,0,MAX);
+     	//Nextif[MAX]={0};
+
+        memset(Base,0,MAX);
+	//Base[MAX]={10000};
+        memset(Check,0,MAX);
+	//Check[MAX]={0};
+        memset(Fail,0,MAX);
+	//Fail[MAX]={0};
+        memset(Output,0,MAX*MAX);
+       //	Output[MAX][MAX]={0};//状态
 
 }
 
 
 int AC::id=0;
 bool AC::Trans_son(char *son)
-{
+{      
+        //cout<<"      
+        cout<<"原始son :"<<son<<endl;
 	int len=strlen(son);
 	int i=0;
 	char *tem=new char[len];
 	//*tem=*son;
-	strcpy(tem,son);
+	//strcpy(tem,son);
+        cout<<"原始tem :"<<tem<<endl;
 	for(i=1;i<len;i++)
-	{
-		for(int k=0;k<strlen(tem);k++)
-		{ if(*(son+i)==*(tem+k))
-			break;
-			else
-			{*(tem+strlen(tem))=*(son+i);}
-		}
+	{    
+    //        if(strlen(tem)==0)
+  //                  *tem=*(son+i);
+//          else{
+            int k=0;
+             while(k<strlen(tem))
+                {if(*(son+i)==*(tem+k))
+                     break;
+                   k++;}
+               if(k==strlen(tem))
+                   *(tem+strlen(tem))=*(son+i);
+	
+//              }
 	}
 	Sort(tem,strlen(tem));
-	delete son;
-	son=tem;
+        cout<<"after Trans_son tem: "<<tem<<endl;
+        strcpy(son,tem);
+	//delete son;
+         delete tem;
+	//son=tem;
+        cout<<"after Trans_son son : "<<son<<endl;
 	return true;
 }
 
@@ -76,6 +94,7 @@ bool AC::CreateTable(Node *curr_old,Node *curr,int init,char *a,char *ini)
 	curr->Nextindex=i;
 	int z=0,y=0,x=0;
 	Next[i]=curr->state;
+      if(Base[curr_old->state]==0)
 	Base[curr_old->state]=Next[i]-curr_old->Nextindex-int(*a);
 	Check[curr->state]=curr_old->state;
 	int b=strlen(curr_old->PR)+1;
@@ -115,10 +134,11 @@ bool AC::CreateTable(Node *curr_old,Node *curr,int init,char *a,char *ini)
 bool AC::AttainSon(Node *curr)
 {
 	int num=strlen(curr->PR);
+        cout<<patt_num<<endl;
 	for(int i=0;i<patt_num;i++)
 	{
 		if(Patt[i].size()>num)
-		{strcat(curr->son,&Patt[i][num]);
+		{strncat(curr->son,&Patt[i][num],1);
 			cout<<curr->son<<endl;
 		}
 	}
@@ -197,11 +217,11 @@ bool AC::All_travese(Node *first)
 			fat=cur;
 			Node *Son=new Node[sonnum];
 			for(int k=0;k<sonnum;k++)  //为子状态建立新结点，并为状态值和前缀赋值
-			{ Son->state=id+1;
+			{ (Son+k)->state=id+1;
 				id++;//id指示当前最后的状态值数值
-				Son->PR=new char[strlen(cur->PR)+1];
-				strcpy(Son->PR,cur->PR);
-				strcat(Son->PR,son+k);
+				(Son+k)->PR=new char[strlen(cur->PR)+1];
+				strcpy((Son+k)->PR,cur->PR);
+				strcat((Son+k)->PR,son+k);
 			}
 			int init=Nextne;
 			while(!Test_next(son,init))
@@ -222,10 +242,11 @@ bool AC::All_travese(Node *first)
 
 		}
 
-		return true;      
+	    //	return true;      
 
 
 
 	}
+      return true;
 }
 

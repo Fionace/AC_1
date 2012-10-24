@@ -28,6 +28,8 @@ typedef struct
 class AC
 {
    public:
+    int patt_num;
+     int patt_maxlen;
      int Next[MAX];
     static  int id;//指示接着的子状态的状态序
      bool  Nextif[MAX];
@@ -37,8 +39,8 @@ class AC
      int Fail[MAX];
      int Output[MAX][MAX];//状态值.模式串索引
      string Patt[MAX];
-     int patt_num;
-     int patt_maxlen;
+     //int patt_num;
+    // int patt_maxlen;
   AC(ifstream &in,Node *first);
   bool All_travese(Node *first);
   bool AttainSon(Node *curr);
